@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+
+        <link href="../css/styles.css" rel="stylesheet">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/fontawesome-all.css" rel="stylesheet">
+
+        <link rel="icon" href="images/organ-donation-logo-new.svg">
+
+        <title>Donors Database</title>    
+    </head>
+
+    <body>
+
+        <!-- start of navigation-->
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav>
+                            <a href="index.html"><img class="nav-logo"  src="../images/organ-donation-platform-logo-1.svg" alt="Organ Donation Platform"></a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- end of navigation-->
+
+        <main>            
+            <div class="container">
+                <div class="row center-box">
+                    <div class="col-md-1">
+                        <div class="spinner">
+                            <div class="bounce1"></div>
+                            <div class="bounce2"></div>
+                            <div class="bounce3"></div>
+                        </div><br>
+                    </div>
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->    
+                    
+            <div class="container">
+                <div class="row center-box">
+                    <div class="col-md-12">
+                        <h3>Details of Registered Donors</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <!-- here goes table generated data! -->
+                            </table>
+                        </div>
+                    </div>
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+                            
+        </main>
+        
+    </body>
+
+        <script src="../main.js"></script>
+        <script>
+            window.onload = App.viewDonors();
+        </script>
+</html>
