@@ -42,8 +42,8 @@
 
 ## Built With
 
-* [![Solidity][solidity-shield-url]][solidity-url]
-* [![Node][node-shield-url]][node-url]
+### Solidity
+### Node
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
