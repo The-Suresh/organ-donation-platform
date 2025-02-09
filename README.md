@@ -42,8 +42,8 @@
 
 ## Built With
 
-## Solidity
-## Node
+### Solidity
+### Node
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -147,6 +147,15 @@ Now that everything is set-up, you can run the server.
    npm run dev
    ```
 2. Open a browser and go to http://localhost:8080/
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Team Members
+
+* [Team Leader : ][Sudalai Suresh](https://github.com/The-Suresh)
+* [Member 2 :][Ramlingam]()
+* [Member 3 :][Naveen]()
+* [Member 4 :][Suriya](https://github.com/NV-Suriya)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
