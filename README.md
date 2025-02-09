@@ -42,8 +42,8 @@
 
 ## Built With
 
-### Solidity
-### Node
+## Solidity
+## Node
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
