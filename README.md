@@ -1,4 +1,10 @@
 
+<a name="readme-top"></a>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 <!-- [![MIT License][license-shield]][license-url] -->
 
 <!-- PROJECT LOGO -->
@@ -8,15 +14,15 @@
     <img src="app/images/../src/images/organ-donation-logo.svg" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Organ Donation Platform Using Blockchain</h3>
+<h3 align="center">Organ Donation Platform</h3>
 
   <p align="center">
     A dApp platform connecting organ donor and acceptor via ethereum blockchain.
     <br />
-    <!-- <a href="https://github.com/The-Suresh/organ-donation-platform.git"><strong>Explore the docs »</strong></a>
+    <!-- <a href="https://github.com/rahulsabinkar/organ-donation-platform"><strong>Explore the docs »</strong></a>
     <br />
     <br /> -->
-    <!-- <a href="https://github.com/The-Suresh/organ-donation-platform.git">View Demo</a> -->
+    <!-- <a href="https://github.com/rahulsabinkar/organ-donation-platform">View Demo</a> -->
   </p>
 </div>
 
@@ -42,8 +48,8 @@
 
 ## Built With
 
-### Solidity
-### Node
+* [![Solidity][solidity-shield-url]][solidity-url]
+* [![Node][node-shield-url]][node-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,7 +121,7 @@ Install gitbash from https://gitforwindows.org/
 1. Open gitbash or terminal.
 2. Clone the repo.
    ```sh
-   git clone https://github.com/The-Suresh/organ-donation-platform.git
+   git clone https://github.com/rahulsabinkar/organ-donation-platform.git
    ```
 3. Traverse into the app folder.
    ```sh
@@ -152,17 +158,26 @@ Now that everything is set-up, you can run the server.
 
 ## Team Members
 
-* [Team Leader : ][Sudalai Suresh](https://github.com/The-Suresh)
-* [Member 2 :][Ramlingam]()
-* [Member 3 :][Naveen]()
-* [Member 4 :][Suriya](https://github.com/NV-Suriya)
+* [Sudalai Suresh](https://github.com/The-Suresh)
+* [Ramlingam]()
+* [Naveen]()
+* [Suriya]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-
+https://github.com/The-Suresh/organ-donation-platform.git
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/The-Suresh/organ-donation-platform.svg?style=for-the-badge
+[contributors-url]: https://github.com/The-Suresh/organ-donation-platform/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/The-Suresh/organ-donation-platform.svg?style=for-the-badge
+[forks-url]: https://github.com/The-Suresh/organ-donation-platform/network/members
+[stars-shield]: https://img.shields.io/github/stars/The-Suresh/organ-donation-platform.svg?style=for-the-badge
+[stars-url]: https://github.com/The-Suresh/organ-donation-platform/stargazers
+[issues-shield]: https://img.shields.io/github/issues/The-Suresh/organ-donation-platform.svg?style=for-the-badge
+[issues-url]: https://github.com/The-Suresh/organ-donation-platform/issues
+[node-shield-url]: https://img.shields.io/badge/node.js-brightgreen?style=for-the-badge&logo=nextdotjs&logoColor=white
+[node-url]: https://nodejs.org/
+[solidity-shield-url]: https://img.shields.io/badge/solidity-blue?style=for-the-badge&logo=solidity&logoColor=white
+[solidity-url]: https://soliditylang.org/
