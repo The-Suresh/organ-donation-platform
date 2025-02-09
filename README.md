@@ -160,11 +160,11 @@ Now that everything is set-up, you can run the server.
 
 * [Sudalai Suresh](https://github.com/The-Suresh)
 * [Ramlingam]()
-* [Naveen]()
-* [Suriya]()
+* [Naveen](https://github.com/Naveen958)
+* [Suriya](https://github.com/NV-Suriya)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-https://github.com/The-Suresh/organ-donation-platform.git
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
