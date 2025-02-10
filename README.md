@@ -19,10 +19,10 @@
   <p align="center">
     A dApp platform connecting organ donor and acceptor via ethereum blockchain.
     <br />
-    <!-- <a href="https://github.com/rahulsabinkar/organ-donation-platform"><strong>Explore the docs »</strong></a>
+    <!-- <a href="https://github.com/The-Suresh/organ-donation-platform.git"><strong>Explore the docs »</strong></a>
     <br />
     <br /> -->
-    <!-- <a href="https://github.com/rahulsabinkar/organ-donation-platform">View Demo</a> -->
+    <!-- <a href="https://github.com/The-Suresh/organ-donation-platform.git">View Demo</a> -->
   </p>
 </div>
 
@@ -121,7 +121,7 @@ Install gitbash from https://gitforwindows.org/
 1. Open gitbash or terminal.
 2. Clone the repo.
    ```sh
-   git clone https://github.com/rahulsabinkar/organ-donation-platform.git
+   git clone https://github.com/The-Suresh/organ-donation-platform.git
    ```
 3. Traverse into the app folder.
    ```sh
@@ -159,7 +159,7 @@ Now that everything is set-up, you can run the server.
 ## Team Members
 
 * [Sudalai Suresh](https://github.com/The-Suresh)
-* [Ramlingam]()
+* [Ramlingam](https://github.com/Ramalingamsj)
 * [Naveen](https://github.com/Naveen958)
 * [Suriya](https://github.com/NV-Suriya)
 
