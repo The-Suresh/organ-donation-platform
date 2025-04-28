@@ -14,7 +14,33 @@
 
         <link rel="icon" href="images/organ-donation-logo-new.svg">
 
-        <title>Pending Pledges</title>    
+        <title>Pending Pledges</title>
+        <style>
+            .back-button {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                background-color: #0dcaf0;
+                color: rgba(0, 0, 0, 0.854);
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+    
+            .back-button:hover {
+                background-color: #0086b3a3;
+            }
+    
+            .matched {
+                color: green;
+            }
+    
+            .not-matched {
+                color: rgb(221, 29, 29);
+            }
+        </style>
     </head>
 
     <body>
@@ -92,7 +118,8 @@
                        
                 </main>
           
-       
+       <!-- Back Button -->
+    <button class="back-button" onclick="window.history.back()">Back</button>
     
     </body>
     <script src="../main.js"></script>
