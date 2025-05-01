@@ -44,6 +44,7 @@ let table = document.querySelector("table");
 function selectRow() {
     var table = document.getElementById('pending-table');
     var cells = table.getElementsByTagName('td');
+
     for (var i = 0; i < cells.length; i++) {
         var cell = cells[i];
         cell.onclick = function () {
@@ -114,10 +115,9 @@ function checkInputValues(user, fullname, age, gender, medical_id, organ, weight
     else {
         return true;
     }
-    return false;
 }
 
-async function assignSearchValues(result, user) {
+function assignSearchValues(result, user) {
     document.getElementById("get" + user + "FullName").innerHTML = "Full Name: " + result[0];
     document.getElementById("get" + user + "Age").innerHTML = "Age: " + result[1];
     document.getElementById("get" + user + "Gender").innerHTML = "Gender: " + result[2];
@@ -176,7 +176,8 @@ const App = {
         const weight = document.getElementById(user + 'Weight').value;
         const height = document.getElementById(user + 'Height').value;
 
-        let checkedValues = checkInputValues(user, fullname, age, gender, medical_id, organ, weight, height);
+        let checkedValues = false;
+        checkedValues = checkInputValues(user, fullname, age, gender, medical_id, organ, weight, height);
         console.log("Values Checked");
         var warning = document.querySelector(".alert.warning");
         if (checkedValues) {
@@ -225,18 +226,20 @@ const App = {
         const gas = await this.contractInstance.methods.setPledge(fullname, age, gender, medical_id, blood_type, organ, weight, height).estimateGas({
             from: this.accounts[0]
         });
-        await this.contractInstance.methods.setPledge(fullname, age, gender, medical_id, blood_type, organ, weight, height).send({
+        await this.contractInstance.methods.setPledge(fullname, age, gender, medical_id, blood_type, organ, weight, height
+        ).send({
             from: this.accounts[0], gas: Math.max(gas, MIN_GAS)
-        });
+        })
     },
 
     setDonor: async function (fullname, age, gender, medical_id, blood_type, organ, weight, height) {
         const gas = await this.contractInstance.methods.setDonors(fullname, age, gender, medical_id, blood_type, organ, weight, height).estimateGas({
             from: this.accounts[0]
         });
-        await this.contractInstance.methods.setDonors(fullname, age, gender, medical_id, blood_type, organ, weight, height).send({
+        await this.contractInstance.methods.setDonors(fullname, age, gender, medical_id, blood_type, organ, weight, height
+        ).send({
             from: this.accounts[0], gas: Math.max(gas, MIN_GAS)
-        });
+        })
     },
 
     setPatient: async function (fullname, age, gender, medical_id, blood_type, organ, weight, height) {
@@ -304,7 +307,7 @@ const App = {
                 await this.contractInstance.methods.getPledge(PledgeIDs[i]).call().then(function (result) {
                     console.log(result);
                     Pledge = [
-                        { Index: i + 1, "Full Name": result[0], Age: result[1], Gender: result[2], "Medical ID": PledgeIDs[i], "Blood-Type": result[3], Organ: result[4], Weight: result[5], Height: result[6] },
+                        { Index: i + 1, "Full Name": result[0], Age: result[1], Gender: result[2], "Medical ID": PledgeIDs[i], "Blood-Type": result[3], Organ: result[4], Weight: result[5], Height: result[6]},
                     ];
 
                     let data = Object.keys(Pledge[0]);
@@ -353,6 +356,193 @@ const App = {
         spinner.style.display = "none";
     },
 
+    // viewDonors: async function () {
+    //     this.accounts = await web3.eth.getAccounts();
+    //     this.contractInstance = new web3.eth.Contract(
+    //         artifact.abi,
+    //         contractAddress
+    //     );
+    //     const DonorCount = await this.contractInstance.methods.getCountOfDonors().call();
+    //     const DonorIDs = await this.contractInstance.methods.getAllDonorIDs().call();
+    //     let Donor;
+
+    //     for (let i = 0; i < DonorCount; i++) {
+    //         await this.contractInstance.methods.getDonor(DonorIDs[i]).call().then(async function (result) {
+    //             console.log(result);
+    //             const matched = await App.isOrganMatched(DonorIDs[i]);
+    //             Donor = [
+    //                 { Index: i + 1, "Full Name": result[0], Age: result[1], Gender: result[2], "Medical ID": DonorIDs[i], "Blood Type": result[3], "Organ(s)": result[4], "Weight(kg)": result[5], "Height(cm)": result[6], Status: matched ? "Organ Matched" : result[7] },
+    //             ];
+
+    //             let data = Object.keys(Donor[0]);
+    //             if (i == 0)
+    //                 generateTableHead(table, data);
+    //             generateTable(table, Donor);
+    //         });
+    //     }
+    //     const spinner = document.querySelector(".spinner");
+    //     spinner.style.display = "none";
+    // },
+
+    // viewDonors: async function () {
+    //     this.accounts = await web3.eth.getAccounts();
+    //     this.contractInstance = new web3.eth.Contract(
+    //         artifact.abi,
+    //         contractAddress
+    //     );
+    //     const DonorCount = await this.contractInstance.methods.getCountOfDonors().call();
+    //     const DonorIDs = await this.contractInstance.methods.getAllDonorIDs().call();
+    //     const PledgeCount = await this.contractInstance.methods.getCountOfPledges().call();
+    //     const PledgeIDs = await this.contractInstance.methods.getAllPledgeIDs().call();
+        
+    //     // Clear existing table
+    //     const table = document.getElementById('donorsTable');
+    //     table.innerHTML = '';
+        
+    //     let allDonors = [];
+    //     let donorIndex = 1;
+    
+    //     // Process regular donors
+    //     for (let i = 0; i < DonorCount; i++) {
+    //         await this.contractInstance.methods.getDonor(DonorIDs[i]).call().then(async function (result) {
+    //             const matched = await App.isOrganMatched(DonorIDs[i]);
+    //             allDonors.push({
+    //                 Index: donorIndex++,
+    //                 "Full Name": result[0],
+    //                 Age: result[1],
+    //                 Gender: result[2],
+    //                 "Medical ID": DonorIDs[i],
+    //                 "Blood Type": result[3],
+    //                 "Organ(s)": result[4],
+    //                 "Weight(kg)": result[5],
+    //                 "Height(cm)": result[6],
+    //                 Status: matched ? "Organ Matched" : result[7],
+    //                 "Donor Type": "Donor" // Add donor type
+    //             });
+    //         });
+    //     }
+    
+    //     // Process pledge donors (those who have been converted to donors)
+    //     for (let i = 0; i < PledgeCount; i++) {
+    //         const isPledgeConverted = await this.contractInstance.methods.validateDonor(PledgeIDs[i]).call();
+    //         if (isPledgeConverted) {
+    //             await this.contractInstance.methods.getDonor(PledgeIDs[i]).call().then(async function (result) {
+    //                 const matched = await App.isOrganMatched(PledgeIDs[i]);
+    //                 allDonors.push({
+    //                     Index: donorIndex++,
+    //                     "Full Name": result[0],
+    //                     Age: result[1],
+    //                     Gender: result[2],
+    //                     "Medical ID": PledgeIDs[i],
+    //                     "Blood Type": result[3],
+    //                     "Organ(s)": result[4],
+    //                     "Weight(kg)": result[5],
+    //                     "Height(cm)": result[6],
+    //                     Status: matched ? "Organ Matched" : result[7],
+    //                     "Donor Type": "Pledge Donor" // Add donor type
+    //                 });
+    //             });
+    //         }
+    //     }
+    
+    //     // Generate table with all donors initially
+    //     if (allDonors.length > 0) {
+    //         let data = Object.keys(allDonors[0]);
+    //         generateTableHead(table, data);
+    //         generateTable(table, allDonors);
+            
+    //         // Store donors data for filtering
+    //         App.currentDonorsData = allDonors;
+    //     } else {
+    //         table.innerHTML = '<tr><td colspan="10" style="text-align:center">No donors found</td></tr>';
+    //     }
+        
+    //     const spinner = document.querySelector(".spinner");
+    //     spinner.style.display = "none";
+    // },
+
+    // viewDonors: async function () {
+    //     this.accounts = await web3.eth.getAccounts();
+    //     this.contractInstance = new web3.eth.Contract(
+    //         artifact.abi,
+    //         contractAddress
+    //     );
+    //     const DonorCount = await this.contractInstance.methods.getCountOfDonors().call();
+    //     const DonorIDs = await this.contractInstance.methods.getAllDonorIDs().call();
+    //     const PledgeCount = await this.contractInstance.methods.getCountOfPledges().call();
+    //     const PledgeIDs = await this.contractInstance.methods.getAllPledgeIDs().call();
+        
+    //     // Clear existing table
+    //     const table = document.getElementById('donorsTable');
+    //     table.innerHTML = '';
+        
+    //     let allDonors = [];
+    //     let donorIndex = 1;
+    //     let processedIDs = new Set();
+    
+    //     // First process all converted pledges (Pledge Donors)
+    //     for (let i = 0; i < PledgeCount; i++) {
+    //         const isPledgeConverted = await this.contractInstance.methods.validateDonor(PledgeIDs[i]).call();
+    //         if (isPledgeConverted && !processedIDs.has(PledgeIDs[i])) {
+    //             await this.contractInstance.methods.getDonor(PledgeIDs[i]).call().then(async function (result) {
+    //                 const matched = await App.isOrganMatched(PledgeIDs[i]);
+    //                 allDonors.push({
+    //                     Index: donorIndex++,
+    //                     "Full Name": result[0],
+    //                     Age: result[1],
+    //                     Gender: result[2],
+    //                     "Medical ID": PledgeIDs[i],
+    //                     "Blood Type": result[3],
+    //                     "Organ(s)": result[4],
+    //                     "Weight(kg)": result[5],
+    //                     "Height(cm)": result[6],
+    //                     Status: matched ? "Organ Matched" : result[7],
+    //                     "Donor Type": "Pledge Donor"
+    //                 });
+    //                 processedIDs.add(PledgeIDs[i]);
+    //             });
+    //         }
+    //     }
+    
+    //     // Then process regular donors (excluding any already processed as Pledge Donors)
+    //     for (let i = 0; i < DonorCount; i++) {
+    //         if (!processedIDs.has(DonorIDs[i])) {
+    //             await this.contractInstance.methods.getDonor(DonorIDs[i]).call().then(async function (result) {
+    //                 const matched = await App.isOrganMatched(DonorIDs[i]);
+    //                 allDonors.push({
+    //                     Index: donorIndex++,
+    //                     "Full Name": result[0],
+    //                     Age: result[1],
+    //                     Gender: result[2],
+    //                     "Medical ID": DonorIDs[i],
+    //                     "Blood Type": result[3],
+    //                     "Organ(s)": result[4],
+    //                     "Weight(kg)": result[5],
+    //                     "Height(cm)": result[6],
+    //                     Status: matched ? "Organ Matched" : result[7],
+    //                     "Donor Type": "Donor"
+    //                 });
+    //                 processedIDs.add(DonorIDs[i]);
+    //             });
+    //         }
+    //     }
+    
+    //     // Generate table with all donors
+    //     if (allDonors.length > 0) {
+    //         let data = Object.keys(allDonors[0]);
+    //         generateTableHead(table, data);
+    //         generateTable(table, allDonors);
+            
+    //         // Store donors data for filtering
+    //         App.currentDonorsData = allDonors;
+    //     } else {
+    //         table.innerHTML = '<tr><td colspan="10" style="text-align:center">No donors found</td></tr>';
+    //     }
+        
+    //     const spinner = document.querySelector(".spinner");
+    //     spinner.style.display = "none";
+    // },
+
     viewDonors: async function () {
         this.accounts = await web3.eth.getAccounts();
         this.contractInstance = new web3.eth.Contract(
@@ -361,26 +551,111 @@ const App = {
         );
         const DonorCount = await this.contractInstance.methods.getCountOfDonors().call();
         const DonorIDs = await this.contractInstance.methods.getAllDonorIDs().call();
-        let Donor;
-
-        for (let i = 0; i < DonorCount; i++) {
-            await this.contractInstance.methods.getDonor(DonorIDs[i]).call().then(async function (result) {
-                console.log(result);
-                const matched = await App.isOrganMatched(DonorIDs[i]);
-                Donor = [
-                    { Index: i + 1, "Full Name": result[0], Age: result[1], Gender: result[2], "Medical ID": DonorIDs[i], "Blood Type": result[3], "Organ(s)": result[4], "Weight(kg)": result[5], "Height(cm)": result[6], Status: matched ? "Organ Matched" : result[7] },
-                ];
-
-                let data = Object.keys(Donor[0]);
-                if (i == 0)
-                    generateTableHead(table, data);
-                generateTable(table, Donor);
-            });
+        const PledgeCount = await this.contractInstance.methods.getCountOfPledges().call();
+        const PledgeIDs = await this.contractInstance.methods.getAllPledgeIDs().call();
+        
+        // Clear existing table
+        const table = document.getElementById('donorsTable');
+        table.innerHTML = '';
+        
+        let allDonors = [];
+        let processedIDs = new Set();
+    
+        // First process all converted pledges (Pledge Donors)
+        for (let i = 0; i < PledgeCount; i++) {
+            const isPledgeConverted = await this.contractInstance.methods.validateDonor(PledgeIDs[i]).call();
+            if (isPledgeConverted && !processedIDs.has(PledgeIDs[i])) {
+                await this.contractInstance.methods.getDonor(PledgeIDs[i]).call().then(async function (result) {
+                    const matched = await App.isOrganMatched(PledgeIDs[i]);
+                    allDonors.push({
+                        "Medical ID": PledgeIDs[i],
+                        "Full Name": result[0],
+                        Age: result[1],
+                        Gender: result[2],
+                        "Blood Type": result[3],
+                        "Organ(s)": result[4],
+                        "Weight(kg)": result[5],
+                        "Height(cm)": result[6],
+                        Status: matched ? "Organ Matched" : result[7],
+                        "Donor Type": "Pledge Donor"
+                    });
+                    processedIDs.add(PledgeIDs[i]);
+                });
+            }
         }
+    
+        // Then process regular donors (excluding any already processed as Pledge Donors)
+        for (let i = 0; i < DonorCount; i++) {
+            if (!processedIDs.has(DonorIDs[i])) {
+                await this.contractInstance.methods.getDonor(DonorIDs[i]).call().then(async function (result) {
+                    const matched = await App.isOrganMatched(DonorIDs[i]);
+                    allDonors.push({
+                        "Medical ID": DonorIDs[i],
+                        "Full Name": result[0],
+                        Age: result[1],
+                        Gender: result[2],
+                        "Blood Type": result[3],
+                        "Organ(s)": result[4],
+                        "Weight(kg)": result[5],
+                        "Height(cm)": result[6],
+                        Status: matched ? "Organ Matched" : result[7],
+                        "Donor Type": "Donor"
+                    });
+                    processedIDs.add(DonorIDs[i]);
+                });
+            }
+        }
+    
+        // Sort donors by Medical ID (or any other field you prefer)
+        allDonors.sort((a, b) => a["Medical ID"] - b["Medical ID"]);
+    
+        // Generate table with all donors
+        if (allDonors.length > 0) {
+            // Add Index based on sorted position
+            const donorsWithIndex = allDonors.map((donor, index) => ({
+                Index: index + 1,
+                ...donor
+            }));
+    
+            let data = Object.keys(donorsWithIndex[0]);
+            generateTableHead(table, data);
+            generateTable(table, donorsWithIndex);
+            
+            // Store donors data for filtering
+            App.currentDonorsData = donorsWithIndex;
+        } else {
+            table.innerHTML = '<tr><td colspan="10" style="text-align:center">No donors found</td></tr>';
+        }
+        
         const spinner = document.querySelector(".spinner");
         spinner.style.display = "none";
     },
-
+    
+    filterDonors: function() {
+        const filterValue = document.getElementById('donorTypeFilter').value;
+        const table = document.getElementById('donorsTable');
+        
+        // Clear existing table data (keep headers)
+        while (table.rows.length > 1) {
+            table.deleteRow(1);
+        }
+        
+        if (!App.currentDonorsData) return;
+        
+        const filteredDonors = filterValue === 'all' 
+            ? App.currentDonorsData 
+            : App.currentDonorsData.filter(donor => donor["Donor Type"] === filterValue);
+        
+        if (filteredDonors.length > 0) {
+            generateTable(table, filteredDonors);
+        } else {
+            const noResultsRow = table.insertRow();
+            const cell = noResultsRow.insertCell();
+            cell.colSpan = Object.keys(App.currentDonorsData[0]).length;
+            cell.textContent = 'No donors match the selected filter';
+            cell.style.textAlign = 'center';
+        }
+    },
     viewPatients: async function () {
         this.accounts = await web3.eth.getAccounts();
         this.contractInstance = new web3.eth.Contract(
@@ -451,7 +726,7 @@ const App = {
                 donor[i] = donorObj;
             });
         }
-        console.log(donors);
+        console.log(donor);
 
         let match;
         console.log("Patient Count: " + patientCount);
@@ -493,14 +768,14 @@ const App = {
 
                             // Removing marked donor organ
                             donor[j].organs[doi] = donor[j].organs[donor[j].organcount - 1];
-                            donor[j].organs.pop();
+                            // donor[j].organs.pop();
                             donor[j].organcount--;
                             break;
                         }
                     }
                     if (donor[j].organcount == 0) {
-                        donor[j] = donor[donorCount - 1];
-                        donorCount--;
+                        // donor[j] = donor[donorCount - 1];
+                        // donorCount--;
                     }
                     if (matchedOrgan) {
                         break;
@@ -523,6 +798,7 @@ const App = {
         const spinner = document.querySelector(".spinner");
         spinner.style.display = "none";
     }
+
 }
 
 window.App = App;

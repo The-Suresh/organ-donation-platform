@@ -36,6 +36,25 @@
         .not-matched {
             color: rgb(221, 29, 29);
         }
+        
+        .filter-bar {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .filter-bar label {
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+        
+        .filter-select {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +89,14 @@
             <div class="row center-box">
                 <div class="col-md-12">
                     <h3>Details of Registered Donors</h3>
+                    <div class="filter-bar">
+                        <label for="donorTypeFilter">Filter by Donor Type:</label>
+                        <select id="donorTypeFilter" class="filter-select" onchange="App.filterDonors()">
+                            <option value="all">All Donors</option>
+                            <option value="Donor">Donor</option>
+                            <option value="Pledge Donor">Pledge Donor</option>
+                        </select>
+                    </div>
                     <div class="table-responsive">
                         <table id="donorsTable">
                             <!-- here goes table generated data! -->
@@ -86,6 +113,23 @@
     <script src="../main.js"></script>
     <script>
         window.onload = App.viewDonors;
+        
+        // Add this if it's not already in your main.js
+        // App.filterDonors = function() {
+        //     const filterValue = document.getElementById('donorTypeFilter').value;
+        //     const rows = document.querySelectorAll('#donorsTable tr');
+        //     
+        //     rows.forEach(row => {
+        //         if (row.cells && row.cells.length > 0) {
+        //             const donorTypeCell = row.cells[3]; // Adjust index based on your table structure
+        //             if (filterValue === 'all' || donorTypeCell.textContent.includes(filterValue)) {
+        //                 row.style.display = '';
+        //             } else {
+        //                 row.style.display = 'none';
+        //             }
+        //         }
+        //     });
+        // };
     </script>
 </body>
 </html>
